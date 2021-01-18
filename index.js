@@ -23,14 +23,15 @@ const uri = "mongodb+srv://volunteer:volunteer123@cluster0.7adfu.mongodb.net/vol
 const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: true});
 client.connect(err => {
   const collection = client.db("volunteerNetwork").collection("events");
-  // console.log('database connected');
+  const uploadCollection = client.db("volunteerNetwork").collection("upload");
+  
 
   //create data
   app.post("/addBooking",(req, res)=>{
       const newBooking = req.body;
       collection.insertOne(newBooking)
       .then(result =>{
-        // res.send(result.insertedCount > 0);
+        res.send(result.insertedCount);
       })
       // console.log(newBooking);
   });
@@ -52,6 +53,25 @@ client.connect(err => {
     .then( result =>{
       // console.log(result);
       (result.deletedCount > 0) 
+    })
+  })
+
+
+  //getting data from input of AddEventForm
+   //create data
+   app.post("/addData",(req, res)=>{
+    const upload = req.body;
+    uploadCollection.insertOne(upload)
+    .then(result =>{
+      res.send(result.insertedCount > 0);
+    })
+});
+
+   //home page a read korer jono upload ar data
+  app.get('/homeData',(req, res)=>{
+    uploadCollection.find({})
+    .toArray((err, documents)=>{
+      res.send(documents);
     })
   })
 
