@@ -8,7 +8,7 @@ require('dotenv').config();
 
 
 
-const port = 7000
+const port = process.env.PORT || 7000;
 
 const app = express();
 app.use(cors());
@@ -82,5 +82,5 @@ client.connect(err => {
 });
 
 
-app.listen(process.env.POST || port);
+app.listen( port,()=>console.log(`connected database server${port}`));
 
