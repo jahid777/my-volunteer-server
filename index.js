@@ -43,7 +43,7 @@ client.connect(err => {
   //ui te read data
   app.get('/eventsCard',(req, res)=>{
     // console.log(req.query.email); jarjar data se se dhakbe
-    collection.find({email: req.query.email})
+    collection.find({})
     .toArray((err, documents)=>{
       res.send(documents);
     })
