@@ -42,12 +42,28 @@ client.connect(err => {
 
   //ui te read data
   app.get('/eventsCard',(req, res)=>{
-    // console.log(req.query.email); jarjar data se se dhakbe
+    //  console.log(req.query.email); jarjar data se se dhakbe
+    // find ar por {} ar viotr
+    
     collection.find({})
     .toArray((err, documents)=>{
       res.send(documents);
     })
   })
+
+  //example
+  
+  app.get('/registrationList',(req, res)=>{
+    //  console.log(req.query.email); jarjar data se se dhakbe
+    // find ar por {} ar viotr
+    
+    collection.find({})
+    .toArray((err, documents)=>{
+      res.send(documents);
+    })
+  })
+
+
 
    
   //delete korer jonno registerList theke
