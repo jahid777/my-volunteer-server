@@ -45,7 +45,7 @@ client.connect(err => {
     //  console.log(req.query.email); jarjar data se se dhakbe
     // find ar por {} ar viotr
     
-    collection.find({})
+    collection.find({email: req.query.email})
     .toArray((err, documents)=>{
       res.send(documents);
     })
